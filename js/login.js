@@ -18,7 +18,11 @@ function validate() {
         alert("Por favor ingresa la contraseña");
         return false;
     }
-    location.href="inicio.html"
-    alert('Te has logueado correctamente');
+    else {
+        sessionStorage.setItem("username", username.trim());
+        sessionStorage.setItem("password", password.trim());
+        location.href="inicio.html"
+        alert('Te has logueado correctamente');
+    }
 }
 

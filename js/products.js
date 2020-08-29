@@ -1,6 +1,8 @@
 const ORDER_ASC_BY_NAME = "AZ";
 const ORDER_DESC_BY_NAME = "ZA";
 const ORDER_BY_PROD_COUNT = "Cant.";
+const ORDER_ASC_BY_COST = "Precio asc.";
+const ORDER_DESC_BY_COST = "Precio des.";
 var currentCategoriesArray = [];
 var currentSortCriteria = undefined;
 var minCount = undefined;
@@ -23,11 +25,29 @@ function sortCategories(criteria, array){
         });
     }else if (criteria === ORDER_BY_PROD_COUNT){
         result = array.sort(function(a, b) {
-            let aCount = parseInt(a.productCount);
-            let bCount = parseInt(b.productCount);
+            let aCount = parseInt(a.soldCount);
+            let bCount = parseInt(b.soldCount);
 
             if ( aCount > bCount ){ return -1; }
             if ( aCount < bCount ){ return 1; }
+            return 0;
+        });
+    }else if (criteria === ORDER_ASC_BY_COST){
+        result = array.sort(function(a, b) {
+            let aCost = parseInt(a.cost);
+            let bCost = parseInt(b.cost);
+
+            if ( aCost < bCost ){ return -1; }
+            if ( aCost > bCost ){ return 1; }
+            return 0;
+        });
+    }else if (criteria === ORDER_DESC_BY_COST){
+        result = array.sort(function(a, b) {
+            let aCost = parseInt(a.cost);
+            let bCost = parseInt(b.cost);
+
+            if ( aCost > bCost ){ return -1; }
+            if ( aCost < bCost ){ return 1; }
             return 0;
         });
     }
@@ -41,8 +61,8 @@ function showCategoriesList(){
     for(let i = 0; i < currentCategoriesArray.length; i++){
         let category = currentCategoriesArray[i];
 
-        if (((minCount == undefined) || (minCount != undefined && parseInt(category.productCount) >= minCount)) &&
-            ((maxCount == undefined) || (maxCount != undefined && parseInt(category.productCount) <= maxCount))){
+        if (((minCount == undefined) || (minCount != undefined && parseInt(category.cost) >= minCount)) &&
+            ((maxCount == undefined) || (maxCount != undefined && parseInt(category.cost) <= maxCount))){
 
             htmlContentToAppend += `
             <a href="category-info.html" class="list-group-item list-group-item-action">
@@ -54,7 +74,7 @@ function showCategoriesList(){
                         <div class="d-flex w-100 justify-content-between">
                             <h4 class="mb-1">`+ category.name +`</h4>
                             <p> <strong>` + category.currency+ category.cost +`</strong> </p>
-                            <small class="text-muted">` + category.soldCount + ` artículos</small>
+                            <small class="text-muted">` + category.soldCount + ` artículos vendidos</small>
                         </div>
                         <p class="mb-1">` + category.description + `</p>
                     </div>
@@ -100,6 +120,14 @@ document.addEventListener("DOMContentLoaded", function(e){
 
     document.getElementById("sortByCount").addEventListener("click", function(){
         sortAndShowCategories(ORDER_BY_PROD_COUNT);
+    });
+
+    document.getElementById("sortCostAsc").addEventListener("click", function(){
+        sortAndShowCategories(ORDER_ASC_BY_COST);
+    });
+
+    document.getElementById("sortCostDesc").addEventListener("click", function(){
+        sortAndShowCategories(ORDER_DESC_BY_COST);
     });
 
     document.getElementById("clearRangeFilter").addEventListener("click", function(){

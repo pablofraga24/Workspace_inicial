@@ -13,26 +13,123 @@
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+
+  <style>
+  .myButton {
+	box-shadow:inset 0px 1px 0px 0px #bee2f9;
+	background:linear-gradient(to bottom, #63b8ee 5%, #468ccf 100%);
+	background-color:#63b8ee;
+	border-radius:6px;
+	border:1px solid #3866a3;
+	display:inline-block;
+	cursor:pointer;
+	color:#14396a;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #7cacde;
+}
+.myButton:hover {
+	background:linear-gradient(to bottom, #468ccf 5%, #63b8ee 100%);
+	background-color:#468ccf;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+</style>
+
 </head>
 
 <body>
   <nav class="site-header sticky-top py-1 bg-dark">
     <div class="container d-flex flex-column flex-md-row justify-content-between">
-      <a class="py-2 d-none d-md-inline-block" href="index.html">Inicio</a>
+      <a class="py-2 d-none d-md-inline-block" href="inicio.html">Inicio</a>
       <a class="py-2 d-none d-md-inline-block" href="categories.html">Categorías</a>
       <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
       <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
       <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
+      <a class="py-2 d-none d-md-inline-block" href="my-profile.html">Usuario: <span id="user"></span></a>
+      <input type="submit" name="" value="Cerrar Sesión" onclick="logout()">
     </div>
   </nav>
-  <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 3 (Fecha de entrega: 13/09/2020) y Entrega 4 (Fecha de entrega: 20/09/2020).</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
+  <main role="main">
+    <div class="container mt-5">
+      <div class="text-center p-4">
+        <h2>Descripción del producto</h2>
+        <p class="lead">Encontrarás aquí toda la información del producto seleccionado.</p>
+        <p class="small alert-warning py-3"><strong>Nota: </strong>por simplicidad, cualquiera sea el producto
+          seleccionado previamente, siempre se visualizará el presente: <strong>Chevrolet Onix Joy</strong>.</p>
+      </div>
+      <h3 id="productName"></h3>
+      <hr class="my-3">
+      <dl>
+        <dt>Precio</dt>
+        <dd>
+          <p id="productPrice"></p><span id="productCurrency"></span>
+        </dd>
+        <dt>Descripción</dt>
+        <dd>
+          <p id="productDescription"></p>
+        </dd>
+        <dt>Categoría</dt>
+        <dd>
+          <a id="productCategory" href="category-info.html">Autos</a>
+        </dd>
+        <dt>Cantidad de productos vendidos</dt>
+        <dd>
+          <p id="productsSold"></p>
+        </dd>
+        <dt>Imágenes ilustrativas</dt>
+        <dd>
+          <div class="row text-center text-lg-left pt-2" id="productImagesGallery">
+          </div>
+        </dd>
+        <dt>Productos relacionados</dt>
+        <hr class="my-3">
+        <dd>
+          <p id="productsRelated"></p>
+        </dd>
+        <dt>Comentarios</dt>
+        <hr class="my-3">
+        <dd>
+          <p id="productsComments"></p>
+        </dd>
+        <p id="comment1User"></p>
+        <p id="comment1Description"></p>
+        <hr class="my-3">
+        <p id="comment2User"></p>
+        <p id="comment2Description"></p>
+        <hr class="my-3">
+        <p id="comment3User"></p>
+        <p id="comment3Description"></p>
+        <hr class="my-3">
+        <p id="comment4User"></p>
+        <p id="comment4Description"></p>
+        <hr class="my-3">
+        <span id="comentarios"></span>
+        <dt>Agregar comentario</dt>
+        <hr class="my-3">
+        <div>
+          <form id="formulario">
+
+            <textarea name="" id="comentario" cols="50" rows="4"></textarea><br>
+            <select id="puntos" required><option value="">Puntuación</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+    
+            <input type="submit" class="myButton" value="Enviar Comentario">
+        </form>
+        </div>
+      </dl>
     </div>
-  </div>
+  </main>
   <footer class="text-muted">
     <div class="container">
       <p class="float-right">
@@ -54,6 +151,7 @@
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/product-info.js"></script>
+  <script src="js/logout.js"></script>
 </body>
 
 </html>

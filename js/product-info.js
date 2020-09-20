@@ -3,22 +3,7 @@ var comment = {};
 const comentarios = [];
 const formulario = document.getElementById('formulario');
 
-//AQUÍ SE ALMACENARÁ LA FECHA Y HORA DEL COMENTARIO
-
-var fecha = new Date();
-var dia = fecha.getDate();
-var mes = fecha.getMonth() + 1;
-var año = fecha.getFullYear();
-var hora = fecha.getHours();
-var minutos = fecha.getMinutes();
-var segundos = fecha.getSeconds();
-var fechaCompleta = año + "-" + mes + "-" + dia;
-var horaCompleta = hora + ":" + minutos + ":" + segundos;
-var fechaYHora = fechaCompleta + " " + horaCompleta;
-
-//-------------------------------------------------------------------------------------
-
-function showImagesGallery(array){
+/*function showImagesGallery(array){
 
     let htmlContentToAppend = "";
 
@@ -32,8 +17,13 @@ function showImagesGallery(array){
             </div>
         </div>
         `
-
         document.getElementById("productImagesGallery").innerHTML = htmlContentToAppend;
+    }
+}*/
+
+function showCarousel(imgs){
+    for(i=0; i<imgs.length; i++){
+        document.getElementById("item"+i).src=imgs[i];
     }
 }
 
@@ -47,10 +37,26 @@ function agregarComentario(comentario, puntos) {
 
 function mostrar() {
 
+    //AQUÍ SE ALMACENARÁ LA FECHA Y HORA DEL COMENTARIO
+
+    var fecha = new Date();
+    var dia = fecha.getDate();
+    var mes = fecha.getMonth() + 1;
+    var año = fecha.getFullYear();
+    var hora = fecha.getHours();
+    var minutos = fecha.getMinutes();
+    var segundos = fecha.getSeconds();
+    var fechaCompleta = año + "-" + mes + "-" + dia;
+    var horaCompleta = hora + ":" + minutos + ":" + segundos;
+    var fechaYHora = fechaCompleta + " " + horaCompleta;
+
+    //-------------------------------------------------------------------------------------
+
     document.getElementById('comentarios').innerHTML =``;
     for (let coment of comentarios) {
         document.getElementById('comentarios').innerHTML += `<p> <strong> ${usuario} </strong> - ${fechaYHora} - Puntuación: ${coment.puntos} <span> </p> <p> ${coment.comentario} <span> </p> <hr class="my-3">`;
     }
+    
 }
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
@@ -72,8 +78,37 @@ document.addEventListener("DOMContentLoaded", function(e){
             productDescriptionHTML.innerHTML = product.description;
             productCountHTML.innerHTML = product.soldCount;
 
+            //Muestro las imagenes en forma de carousel
+            showCarousel(product.images);
+
             //Muestro las imagenes en forma de galería
-            showImagesGallery(product.images);
+            //showImagesGallery(product.images);
+
+            getJSONData(PRODUCTS_URL).then(function(resultObj){
+                if (resultObj.status === "ok")
+                {
+                    products = resultObj.data;
+
+                    let relatedProducts = ' ';
+                    let relatedProductsHTML = document.getElementById("relatedProducts");
+                
+                    product.relatedProducts.forEach(function(productIndex){
+                       let productos = products[productIndex];
+                       relatedProducts += `
+                       <div class="card" style="width: 18rem;">
+                            <img src="${productos.imgSrc}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">${productos.name}</h5>
+                                <p class="card-text">${productos.description}</p>
+                                <a href="" class="btn btn-link">Ver</a>
+                            </div>
+                        </div>                  
+                       `
+                    });
+
+                    relatedProductsHTML.innerHTML = relatedProducts;
+                }
+            });
         }
     });
 

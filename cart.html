@@ -27,6 +27,44 @@
         font-size: 3.5rem;
       }
     }
+
+    #carrito h4{
+      text-align: center;
+    }
+
+    table {
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    th, td {
+      border-bottom: 1px solid #ddd;
+    }
+    
+    #envio {
+      margin-left: 200px;
+    }
+
+    input[type=number]{
+      text-align: center;
+      width: 20%;
+      border: 2px solid red;
+    }
+    
+    #finalPrices{
+      width: 82.3%;
+    }
+
+    #expiration, #account-number {
+      margin-left: -15px;
+    }
+
+    /*input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }*/
   </style>
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
@@ -51,14 +89,111 @@
       </div>
     </div>
   </nav>
-  <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 5 (Fecha de entrega: 11/10/2020) y Entrega 6 (Fecha de entrega: 25/10/2020).</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
+  <div class="text-center p-4">
+    <h2>Carrito de compras</h2> 
+  </div>
+  <div id="carrito">
+    <h4>Artículos a comprar</h4><br>
+    <div id="cart-container">
+    </div>
+  </div><br>
+  <div id="envio"><h5 class="mb-3">Tipo de envío</h5>
+    <div class="d-block my-3">
+      <div class="custom-control custom-radio">
+        <input id="goldradio" name="publicationType" type="radio" class="custom-control-input" checked="" required="">
+        <label class="custom-control-label" for="goldradio">Premium 2 a 5 dias (15%)</label>
+      </div>
+      <div class="custom-control custom-radio">
+        <input id="premiumradio" name="publicationType" type="radio" class="custom-control-input" required="">
+        <label class="custom-control-label" for="premiumradio">Express 5 a 8 dias (7%)</label>
+      </div>
+      <div class="custom-control custom-radio">
+        <input id="standardradio" name="publicationType" type="radio" class="custom-control-input" required="">
+        <label class="custom-control-label" for="standardradio">Estándar 12 a 15 dias (5%)</label>
+      </div>
+    </div>
+    <h5 class="mb-3">Dirección de envío</h5>
+    <div class="form-group row">
+    <div class="col-sm-4">
+      <label for="calle">Calle</label>
+      <input type="text" class="form-control" id="calle">
+    </div>
+    <div class="col-sm-2">
+      <label for="numero">Número</label>
+      <input type="text" class="form-control" id="numero">
+    </div>
+    <div class="col-sm-4">
+      <label for="esquina">Esquina</label>
+      <input type="text" class="form-control" id="esquina">
+    </div></div>
+    <h5 class="mb-3">Costos</h5>
+              <ul class="list-group mb-3" id="finalPrices">
+                  <li class="list-group-item d-flex justify-content-between lh-condensed">
+                    <div>
+                      <h6 class="my-0">Subtotal (USD) </h6>
+                      <small class="text-muted">Costo unitario del producto por cantidad</small>
+                    </div>
+                    <span class="text-muted" id="productCostText">-</span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between lh-condensed">
+                    <div>
+                      <h6 class="my-0">Costo de envío (USD) </h6>
+                      <small class="text-muted">Según tipo de envío</small>
+                    </div>
+                    <span class="text-muted" id="comissionText">-</span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between">
+                    <h6 class="my-0">Total (USD)</h6>
+                    <strong id="totalCostText">-</strong>
+                  </li>
+                </ul>
+    <h5 class="mb-3">Forma de pago</h5>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Seleccione método de pago</button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Forma de pago</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+        <form role="form" id="modalPayment">
+          <input type="radio" id="credit-card" name="payment" checked>
+          <label for="credit-card">Tarjeta de crédito</label><hr>
+          <div class="form-group row">
+            <div class="col-sm-5">
+              <label for="numerito">Número de tarjeta</label>
+              <input type="text" class="form-control" id="numerito">
+            </div>
+            <div class="col-sm-4">
+              <label for="seguridad">Código de seg.</label>
+              <input type="text" class="form-control" id="seguridad" value="">
+            </div></div>
+            <div class="col-sm-5" id="expiration">
+              <label for="vencimiento">Vencimiento (MM/AA)</label>
+              <input type="month" class="form-control" id="vencimiento" min="" value="">
+            </div><br>
+          <input type="radio" id="bank-transference" name="payment">
+          <label for="bank-transference">Transferencia bancaria</label><hr>
+          <div class="col-sm-5" id="account-number">
+            <label for="number">Número de cuenta</label>
+            <input type="text" class="form-control" id="number" value="">
+          </div><br>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary" data-dismiss="modal" id="cerrar" onclick="validate()">Cerrar</button>
+          </div>
+        </form>
+        </div>
+      </div>
+    </div>
     </div>
   </div>
+              
   <div id="spinner-wrapper">
     <div class="lds-ring">
       <div></div>

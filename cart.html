@@ -46,7 +46,7 @@
       margin-left: 200px;
     }
 
-    input[type=number]{
+    #article0, #article1{
       text-align: center;
       width: 20%;
       border: 2px solid red;
@@ -60,11 +60,12 @@
       margin-left: -15px;
     }
 
-    /*input::-webkit-outer-spin-button,
+    input::-webkit-outer-spin-button,
     input::-webkit-inner-spin-button {
       -webkit-appearance: none;
       margin: 0;
-    }*/
+    }
+
   </style>
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
@@ -82,7 +83,7 @@
         <button type="button" class="btn btn-primary dropdown-toggle" id="user" data-toggle="dropdown">
         </button>
         <div class="dropdown-menu">
-          <a class="dropdown-item" href="cart.html">Mi carrito</a>
+          <a class="dropdown-item" href="cart.html">Mi carrito <span class="badge badge-pill badge-success" id="badge"></span></a>
           <a class="dropdown-item" href="my-profile.html">Mi perfil</a>
           <a class="dropdown-item" href="#" onclick="logout()">Cerrar Sesión</a>
         </div>
@@ -113,19 +114,19 @@
       </div>
     </div>
     <h5 class="mb-3">Dirección de envío</h5>
-    <div class="form-group row">
+    <div class="form-row">
     <div class="col-sm-4">
       <label for="calle">Calle</label>
-      <input type="text" class="form-control" id="calle">
+      <input type="text" class="form-control input" name="input" id="calle">
     </div>
     <div class="col-sm-2">
-      <label for="numero">Número</label>
-      <input type="text" class="form-control" id="numero">
+      <label for="numero" id="labelnumero">Número</label>
+      <input type="number" class="form-control input" name="input" id="numero">
     </div>
     <div class="col-sm-4">
       <label for="esquina">Esquina</label>
-      <input type="text" class="form-control" id="esquina">
-    </div></div>
+      <input type="text" class="form-control input" name="input" id="esquina">
+    </div></div><br>
     <h5 class="mb-3">Costos</h5>
               <ul class="list-group mb-3" id="finalPrices">
                   <li class="list-group-item d-flex justify-content-between lh-condensed">
@@ -163,37 +164,38 @@
         </div>
         <div class="modal-body">
         <form role="form" id="modalPayment">
-          <input type="radio" id="credit-card" name="payment" checked>
+          <input type="radio" id="credit-card" name="payment" onclick="disableInput();" checked>
           <label for="credit-card">Tarjeta de crédito</label><hr>
           <div class="form-group row">
             <div class="col-sm-5">
               <label for="numerito">Número de tarjeta</label>
-              <input type="text" class="form-control" id="numerito">
+              <input type="number" class="form-control" name="input" id="numerito">
             </div>
             <div class="col-sm-4">
               <label for="seguridad">Código de seg.</label>
-              <input type="text" class="form-control" id="seguridad" value="">
+              <input type="number" class="form-control" id="seguridad" name="input" value="">
             </div></div>
             <div class="col-sm-5" id="expiration">
               <label for="vencimiento">Vencimiento (MM/AA)</label>
-              <input type="month" class="form-control" id="vencimiento" min="" value="">
+              <input type="month" class="form-control" id="vencimiento" min="" name="input" value="">
             </div><br>
-          <input type="radio" id="bank-transference" name="payment">
+          <input type="radio" name="payment" id="bank-transference" onclick="disableInput();">
           <label for="bank-transference">Transferencia bancaria</label><hr>
           <div class="col-sm-5" id="account-number">
             <label for="number">Número de cuenta</label>
-            <input type="text" class="form-control" id="number" value="">
+            <input type="number" class="form-control input" name="" id="number" value="">
           </div><br>
           <div class="modal-footer">
-            <button type="submit" class="btn btn-primary" data-dismiss="modal" id="cerrar" onclick="validate()">Cerrar</button>
+            <button type="submit" class="btn btn-primary" data-dismiss="modal" id="cerrar" onclick="">Cerrar</button>
           </div>
         </form>
         </div>
       </div>
     </div>
-    </div>
+    </div><br><br>
+    <button type="button" class="btn btn-danger" if="finish" onclick="validar();">Finalizar compra</button>
   </div>
-              
+         
   <div id="spinner-wrapper">
     <div class="lds-ring">
       <div></div>

@@ -21,10 +21,10 @@ function validate() {
     alert("Por favor ingresa la contraseña");
     return false;
   } else {
-    sessionStorage.setItem("username", username.trim());
-    sessionStorage.setItem("password", password.trim());
+    localStorage.setItem("username", username.trim());
+    localStorage.setItem("password", password.trim());
     location.href = "inicio.html";
     alert("Te has logueado correctamente");
   }
-}
+};
 

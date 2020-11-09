@@ -48,6 +48,6 @@ document.addEventListener("DOMContentLoaded", function(e){
   
 });
 
-var usuario = sessionStorage.getItem("username");
+var usuario = localStorage.getItem("username");
 
 document.getElementById("user").innerHTML = usuario;

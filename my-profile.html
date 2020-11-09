@@ -27,6 +27,55 @@
         font-size: 3.5rem;
       }
     }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    .secondColumn {
+      margin-left: 6rem;
+    }
+
+    .contactNumber {
+      margin-right: 2rem;
+    }
+    
+    #boton {
+      margin-left: 25.4rem;
+    }
+
+    #inpFile {
+      margin-top: 2.2rem;
+    }
+
+    .image-preview {
+    width: 150px;
+    height: 150px;
+    border: 2px solid rgb(201, 195, 195);
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-weight: bold;
+    color: rgb(134, 130, 130);
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .image-preview__image {
+    display: none;
+    margin: 0 auto;
+    margin-left: -25%;
+    height: 100%;
+    width: auto;
+  }
+
   </style>
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
@@ -51,13 +100,53 @@
       </div>
     </div>
   </nav>
-  <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 7 (Fecha de entrega: 8/11/202020) -> Punto 1 y 2.</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
-    </div>
+  <div class="text-center p-4">
+    <h2>Mi perfil</h2>
+    <p class="lead">Verás aquí los datos de tu perfil</p>
+  </div>
+  <div class="image-preview" id="image-preview">
+    <img src="" alt="Image Preview" class="image-preview__image">
+    <span class="image-preview__default-text">Aquí irá tu imagen de perfil</span>
+  </div><br><br>
+  <div class="pb-5" id="datos">
+    <div class="form-row justify-content-center" id="nombres">
+      <div class="col-sm-2">
+        <label for="firstName">Primer Nombre<span style="color: red">*</span></label>
+        <input class="form-control" type="text" id="firstName">
+      </div>
+      <div class="col-sm-2 secondColumn">
+        <label for="secondName">Segundo Nombre</label>
+        <input class="form-control" type="text" id="secondName">
+      </div>
+    </div><br>
+    <div class="form-row justify-content-center" id="apellidos">
+      <div class="col-sm-2">
+        <label for="firstSurname">Primer Apellido<span style="color: red">*</span></label>
+        <input class="form-control" type="text" id="firstSurname">
+      </div>
+      <div class="col-sm-2 secondColumn">
+        <label for="secondSurname">Segundo Apellido</label>
+        <input class="form-control" type="text" id="secondSurname">
+      </div>
+    </div><br>
+    <div class="form-row justify-content-center" id="otrosDatos">
+      <div class="col-sm-2">
+        <label for="email">Email<span style="color: red">*</span></label>
+        <input class="form-control" type="email" id="email">
+      </div>
+      <div class="col-sm-2 secondColumn">
+        <label for="age">Edad<span style="color: red">*</span></label>
+        <input class="form-control" type="number" id="age">
+      </div>
+    </div><br>
+    <div class="form-row justify-content-center">
+      <div class="col-sm-2 contactNumber">
+      <label for="contactNumber">Teléfono de contacto<span style="color: red">*</span></label>
+      <input class="form-control" type="number" id="contactNumber">
+      </div>
+      <input type="file" name="inpFile" id="inpFile">
+    </div><br><br>
+    <button type="submit" class="btn btn-primary" id="boton" onclick="guardarDatos();">Guardar cambios</button>
   </div>
   <footer class="text-muted bg-light">
     <div class="container">

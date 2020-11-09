@@ -10,6 +10,17 @@
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
+    <style>
+      #rangoPrecioTexto {
+        margin-top: 2rem;
+      }
+
+      #botones {
+        margin-left: 1rem;
+        margin-top: 2rem;
+      }
+
+    </style>
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
@@ -63,27 +74,28 @@
               <div class="col-md-6"></div>
                 <div class="col-md-6 col-sm-12 mb-1 container">
                   <div class="row container p-0 m-0">
-                    <div class="col">
-                      <p class="font-weight-normal text-right my-2">Price range</p>
+                    <div class="col" id="rangoPrecioTexto">
+                      <p class="font-weight-normal text-right my-2">Precio</p>
                     </div>
-                    <div class="col">
-                      <input class="form-control" type="number" placeholder="min." id="rangeFilterCountMin">
+                    <div class="col" style="text-align: center;">
+                      <label for="rangeFilterCountMin">Min.</label>
+                      <input class="form-control" type="number" placeholder="" min="1" id="rangeFilterCountMin">
                     </div>
-                    <div class="col">
-                      <input class="form-control" type="number" placeholder="máx." id="rangeFilterCountMax">
+                    <div class="col" style="text-align: center;">
+                      <label for="rangeFilterCountMax">Max.</label>
+                      <input class="form-control" type="number" placeholder="" min="1" id="rangeFilterCountMax">
                     </div>
-                    <div class="col-3 p-0">
-                      <div class="btn-group" role="group">
+                    <div class="col p-0 row">
+                      <div class="btn-group" role="group" id="botones">
                         <button class="btn btn-light btn-block" id="rangeFilterCount">Filtrar</button>
                         <button class="btn btn-link btn-sm" id="clearRangeFilter">Limpiar</button>
                       </div>
                     </div>
                   </div>
                 </div>
+            </div><br>
+            <div class="row" id="cat-list-container">
             </div>
-            <div class="row">
-                <div class="list-group" id="cat-list-container">
-                </div>
             </div>
         </div>
     </main>
